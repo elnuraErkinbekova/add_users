@@ -2,6 +2,8 @@ import { useState, Fragment } from "react";
 import "./App.css";
 import AddUser from "./components/AddUser";
 import UserList from "./components/UserList";
+import ErrorModal from "./components/ui/ErrorModal";
+
 
 function App() {
 	const [users, setUsers] = useState([]);
