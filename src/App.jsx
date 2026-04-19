@@ -2,8 +2,7 @@ import { useState, Fragment } from "react";
 import "./App.css";
 import AddUser from "./components/AddUser";
 import UserList from "./components/UserList";
-import ErrorModal from "./components/ui/ErrorModal";
-
+import ConfirmModal from "./components/ui/ConfirmModal";
 
 function App() {
 	const [users, setUsers] = useState([]);
@@ -37,11 +36,11 @@ function App() {
 			<UserList users={users} onDelete={deleteUserHandler} />
 
 			{userToDelete && (
-				<ErrorModal
-					error="Deleting a user"
+				<ConfirmModal
+					title="Deleting a user"
 					message="Are you sure that you want to delete a user?"
-					onClose={cancelDeleteHandler}
 					onConfirm={confirmDeleteHandler}
+					onCancel={cancelDeleteHandler}
 				/>
 			)}
 		</>
