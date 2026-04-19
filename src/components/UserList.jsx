@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./UserList.module.css";
+import Button from "./ui/Button";
 
 const UserList = (props) => {
 	return (
@@ -8,7 +9,7 @@ const UserList = (props) => {
 				{props.users.map((user) => (
 					<li key={user.id}>
 						{user.name} ({user.age}) years
-						<button onClick={() => props.onDelete(user.id)}>Delete</button>
+						<Button onClick={() => props.onDelete(user.id)}>Delete</Button>
 					</li>
 				))}
 			</ul>
