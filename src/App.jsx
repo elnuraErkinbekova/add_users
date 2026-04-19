@@ -5,6 +5,7 @@ import UserList from "./components/UserList";
 
 function App() {
 	const [users, setUsers] = useState([]);
+	const [userToDelete, setUserToDelete] = useState(null);
 
 	const addUserHandler = (userInfo) => {
 		setUsers((prevUsers) => {
@@ -12,10 +13,35 @@ function App() {
 		});
 	};
 
+	const deleteUserHandler = (id) => {
+		setUserToDelete(id);
+	};
+
+	const confirmDeleteHandler = () => {
+		setUsers((prevUsers) =>
+			prevUsers.filter((user) => user.id !== userToDelete),
+		);
+		setUserToDelete(null);
+	};
+
+	const cancelDeleteHandler = () => {
+		setUserToDelete(null);
+	};
+
 	return (
 		<>
 			<AddUser onAdd={addUserHandler} />
-			<UserList users={users} />
+
+			<UserList users={users} onDelete={deleteUserHandler} />
+
+			{userToDelete && (
+				<ErrorModal
+					error="Deleting a user"
+					message="Are you sure that you want to delete a user?"
+					onClose={cancelDeleteHandler}
+					onConfirm={confirmDeleteHandler}
+				/>
+			)}
 		</>
 	);
 }
